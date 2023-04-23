@@ -1,0 +1,76 @@
+//-------------------------------------------------------------------------------------------------------
+Döngü Deyimleri(Loop statements):
+1-)for(<ifade1>;<ifade2>;<ifade3>)
+for(int i = 0,int k = 5;i < 10,k < 5;++i,k--)
+    deyim1;
+{
+    deyim1;
+    deyim2;
+    deyim3;
+}
+2-)while(<ifade1>){
+
+}
+3-)do-while
+4-)for-each
+
+//-----------------------------------------------------------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n = 100;
+    while(n--){
+        cout << "Hello" << '\n';
+    }
+
+}
+//-----------------------------------------------------------
+#include <iostream>
+#include <string>
+
+int main ()
+{
+    std::string str="We think in generalities, but we live in details.";
+    // (quoting Alfred N. Whitehead)
+
+    std::string str2 = str.substr(3,5);     // "think"
+
+    std::size_t pos = str.find("live");      // position of "live" in str
+
+    std::string str3 = str.substr (pos);     // get from "live" to the end
+
+    std::cout << str2 << "\n*********\n" << str3 << '\n';
+
+    return 0;
+}
+//------------------------------------------------------------------------
+        k = k + 1;
+        k++;
+        ++k;
+        k += 1;
+//------------------------------------------------------------------------
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string mystrrev(string str)
+{
+    int k = str.length() - 1;
+    string rev;
+
+    while(k >= 0){
+      rev += str.at(k);
+      k--;
+    }
+    return rev;
+}
+
+int main ()
+{
+    string town = "Ankara";
+    cout << mystrrev(town) << '\n';
+}

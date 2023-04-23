@@ -1,0 +1,144 @@
+/*----------------------------------------------------------
+
+-----------------------------------------------------------*/
+#include <iostream>
+
+using namespace std;
+
+class printDiamond{
+public:
+    static void run(const int& n){
+        int x = 0;
+        bool flag = true;
+        while(true){
+            for (int i = 0; i < n - x - 1; ++i) {
+                cout << ' ';
+            }
+            for (int i = 0; i < 2 * x + 1; ++i) {
+                cout << '*';
+            }
+            if(flag)
+                ++x;
+            else
+                --x;
+            if(x == n - 1)
+                flag = false;
+            if(x < 0)
+                break;
+            cout << '\n';
+        }
+    }
+    static void printDiamondTest()
+    {
+        int n;
+        cout << "n degerini giriniz" << '\n';
+        cin >> n;
+        run(n);
+    }
+};
+
+
+int main()
+{
+    printDiamond::printDiamondTest();
+}
+0 -> false
+non-zero değerler -> true
+-1 -> true
+//--------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+class BallShape{
+public:
+    static void run(int& height,int& width)
+    {
+        int BallIndex = 0;
+        bool directionFlag = true;
+        while (height--){
+            cout << '|';
+            for (int i = 0; i < BallIndex; ++i) {
+                cout << ' ';
+            }
+            cout << '*';
+            for(int i = BallIndex;i < width - 1;++i){
+                cout << ' ';
+            }
+            cout << '|' << '\n';
+            if(directionFlag && BallIndex == width - 1)
+                directionFlag = false;
+            else if(!directionFlag && BallIndex == 0)
+                directionFlag = true;
+            if(directionFlag)
+                BallIndex++;
+            else
+                BallIndex--;
+        }
+    }
+    static void BallShapeTest()
+    {
+        int height,width;
+        cout << "Enter Height?" << '\n';
+        cin >> height;
+        cout << "Enter width?" << '\n';
+        cin >> width;
+        run(height,width);
+    }
+};
+
+
+int main()
+{
+    BallShape::BallShapeTest();
+}
+/*----------------------------------------------------------
+do-while döngü deyiminin babadan kalma while döngü deyiminden
+ farkı do-while döngüsünün 1 defa döneceği garanti altında
+2 tip while döngüsü vardır:
+ 1-)Kontrolün başta yapıldığı(while)
+ while(<ifade>){
+    //code
+ }
+ 2-)Kontrolün sonda yapıldığı(do-while)
+ do{
+    //code
+ }while(<ifade>);
+-----------------------------------------------------------*/
+#include <iostream>
+
+int getDigitsCount(int val)
+{
+    int count = 0;
+    do{
+        count++;
+        val /= 10;
+    } while (val);
+
+    return count;
+}
+
+int main()
+{
+    int val;
+    std::cout << "Bir sayi giriniz?\n";
+    std::cin >> val;
+    std::cout << "result : " << getDigitsCount(val) << '\n';
+}
+/*--------------------------------------------------------
+Sınıflar(classes):
+no-modifier fonksiyonlar ve veri elemanları default olarak
+C++'da private özelliğe sahiptir.
+access modifiers(erişim belirleyiciler):
+1-)private sadece class içerisinde erişime izin verilen
+member functions veya veri elemanları anlamına gelmektedir.
+2-)no-modifier:hiçbir şey yazılmaması anlamına gelir bu
+durumda C++ da bu nesneler otomatik private kabul edilir.
+structurelarda bu durum
+3-)public:Her yerden erişimine izin verilen nesneler
+anlamını taşır.
+4-)protected:nesnelerin bir parent class a sahip bir class
+içerisinde parents class tarafından public görülmesi sağlayan
+anahtar sözcüktür ancak bu nesneler parent class hariç private
+konumundadır.
+-------------------------------------------------------*/

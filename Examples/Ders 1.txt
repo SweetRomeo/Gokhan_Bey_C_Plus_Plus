@@ -1,0 +1,285 @@
+/*---------------------------------------
+aşağıdaki örnekte üye fonksiyon ve serbest
+fonksiyon arasındaki fark anlatılmıştır.
+----------------------------------------*/
+
+#include <cstdio>
+
+int* foo()//free function
+{
+    int g = 10;
+    return &g;
+}
+
+class NumberUtil{
+public:
+    static bool isPrime(int val){ //member function
+        //code
+    }
+};
+
+int main()
+{
+    int*ptr = foo();
+    printf("%p",ptr);
+}
+//--------------------------------------------------------------
+#include <iostream>
+#include <cstdio>
+
+int main()
+{
+    int a = 10;
+    int* p = &a;
+    int& r = a;
+    printf("&a : %p\n",&a);
+    printf("p : %p\n",p);
+    printf("*p : %d\n",*p);
+    printf("r : %d\n",r);
+    int b = 34;
+    p = &b;
+    printf("&a : %p\n",&a);
+    printf("&b : %p\n",&b);
+    printf("p : %p\n",p);
+    printf("*p : %d\n",*p);
+    printf("r : %d\n",r);
+    r = b;//a = b
+}
+//------------------------------------------------------------------
+#include <iostream>
+#include <cstdio>
+
+bool isLeapYear(int year)
+{
+    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+}
+
+int main()
+{
+    int year;
+    std::cout << "Yili giriniz\n";
+    std::cin >> year;
+    if(isLeapYear(year)){
+        std::cout << "Artik yil" <<'\n';
+    } else{
+        std::cout << "Artik yil degil" << '\n';
+    }
+}
+//---------------------------------------------------------------------
+#include <iostream>
+#include <string>
+
+bool isLeapYear(int year)
+{
+    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+}
+
+std::string isLeapYearTest()
+{
+    int year;
+    std::cout << "Yili giriniz\n";
+    std::cin >> year;
+    if(isLeapYear(year)){
+        return "Artik yil";
+    }
+    return "Artik yil degil";
+}
+
+int main()
+{
+    auto s = isLeapYearTest();
+}
+/*------------------------------------------------------------------------
+fonksiyonun genel biçimi:
+<geri dönüş değeri> <fonksiyon ismi>(<parametre değişkenleri>)
+-----------------------------------------------------------------------*/
+
+
+
+/*-----------------------------------------------------------------------
+fonksiyonların varsayılan argüman alması
+-----------------------------------------------------------------------*/
+#include <iostream>
+#include <cstdio>
+
+
+bool isValidDate(int day,int month=1,int year=1)
+{
+    //code
+}
+
+int main()
+{
+    isValidDate(10);//isValidDate(10,1,1);
+    isValidDate(10,6);//isValidDate(10,6,1);
+    isValidDate(10,12,1998);//isValidDate(10,12,1998);
+}
+/*-----------------------------------------------------------------------
+1-)basit deyim
+    a = 10;
+2-)birleşik deyim
+{
+    deyim1;
+    deyim2;
+}
+3-)boş deyim
+    ;
+4-)kontrol deyimleri:if,for,do-while,goto, break, continue, return, while
+5-)bildirim deyimleri
+    int a = 10;
+    double d = 23.45;
+
+Anahtar Notlar: Geri dönüş olmayan bir fonksiyonda return bir değişken veya bir
+sabitle kullanılanamaz.
+-------------------------------------------------------------------------*/
+#include <iostream>
+#include <cstdio>
+#define A 24
+
+
+void func()
+{
+    return A;
+}
+
+int main()
+{
+
+}
+/*-----------------------------------------------------------------------
+Aşağıdaki örneği inceleyiniz.
+---------------------------------------------------------------------*/
+#include <iostream>
+
+void foo(int x)
+{
+    if(10 == x)
+        return;
+    std::cout << "foo called" << '\n';
+}
+
+int main()
+{
+    foo(10);
+    foo(11);
+}
+/*-----------------------------------------------------------------------
+Aşağıdaki örnkete anlatılmak istenen eğer bir işlem yapılırken operandlardan 
+biri double türden ise işlem double türünde yapılır önermesidir şüphesiz 
+bu static_cast operatörü veya C'den genel düz type casting operatörü kullanılarak
+da yapılabilirdi.
+---------------------------------------------------------------------*/
+#include <iostream>
+
+int foo(int x,int y,int z)
+{
+    return x * y + z;
+}
+
+double func(int x,int y,int z)
+{
+    return static_cast<double>(x) * y / z;
+}
+
+int main()
+{
+    double result = func(10,3,5) * 5 / foo(3,8,9);
+    std::cout << result <<'\n';
+}
+//-----------------------------------------------------------------
+
+#include <iostream>
+
+bool isEven(int val)
+{
+    return val % 2 == 0;
+}
+
+int main()
+{
+
+}
+
+//--------------------------------------------------------------------
+#include <iostream>
+
+int getDigitsSum(int val)
+{
+    int result = 0;
+    while(val){
+        result += val % 10;
+        val /= 10;
+    }
+    return result;
+}
+
+int main()
+{
+    int val;
+    std::cout << "Bir sayi giriniz?\n";
+    std::cin >> val;
+    int result = getDigitsSum(val);
+    std::cout << "result : "<< result << '\n';
+}
+//-------------------------------------------------------------------
+#include <iostream>
+#include <string>
+
+void Verse(std::string& animal,std::string& noise)
+{
+    animal = "Cat";
+    noise = "Miyav";
+}
+
+int main()
+{
+    std::string animal = "Dog";
+    std::string noise = "Havhav";
+    std::cout << "animal : " << animal << " noise : " << noise << '\n';
+    Verse(animal,noise);
+    std::cout << "animal : " << animal << " noise : " << noise << '\n';
+}
+
+//---------------------------------------------------------------------
+#include <iostream>
+#include <string>
+
+void foo()
+{
+    std::cout << "foo called " << '\n';
+}
+
+int func()
+{
+    std::cout << "func called " << '\n';
+    return 10;
+}
+
+
+int main()
+{
+    int x = foo();
+    int y = func();
+    func();
+    foo();
+}
+//----------------------------------------------------
+#include <iostream>
+#include <string>
+
+double getArea(double radius)
+{
+    return 3.14 * radius * radius;
+}
+
+int main()
+{
+    int arr[]{1,2,3};
+    int& r = arr[0];
+    int* p = &arr[0];
+    std::cout << *p << '\n';
+    p++;
+    std::cout << *p << '\n';
+    p++;
+    std::cout << *p << '\n';
+}

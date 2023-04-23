@@ -1,0 +1,316 @@
+/*---------------------------------------------------------
+Örnek Soru 1:Parametresiyle aldığı int türden bir sayının basamakları
+toplamını geri döndüren getDigitsSum isimli fonksiyonu yazınız.
+123 -> 6
+----------------------------------------------------------*/
+#include <iostream>
+#include <cmath>
+
+int getDigitsSum(int val = 0)
+{
+    int sum = 0;
+    while(val){
+        sum += val % 10;
+        val /= 10;
+    }
+    return abs(sum);
+}
+
+int main()
+{
+    int val;
+    std::cout << "Bir sayi giriniz?\n";
+    std::cin >> val;
+    auto result = getDigitsSum(val);
+    std::cout << getDigitsSum(val) << '\n';
+    std::cout << "result : " << result << '\n';
+    std::cout << getDigitsSum() << '\n';
+}
+/*---------------------------------------------------------
+Örnek Soru 2:Parametresiyle aldığı int türden bir sayının basamak
+sayısını geri döndüren getDigitsCount isimli fonksiyonu yazınız ve test ediniz.
+12 -> 2
+123 -> 3
+0 -> 1
+----------------------------------------------------------*/
+#include <iostream>
+
+int getDigitsCount(int val)
+{
+    if(val == 0)
+        return 1;
+    int count = 0;
+    while(val){
+        count++;
+        val /= 10;
+    }
+    return count;
+}
+
+
+
+int main()
+{
+    int val;
+    std::cout << "Bir sayi giriniz?\n";
+    std::cin >> val;
+    std::cout << "result : " << getDigitsCount(val) << '\n';
+}
+/*---------------------------------------------------------
+Örnek Soru 2:Parametresiyle aldığı int türden bir sayının basamak
+sayısını geri döndüren getDigitsCount isimli fonksiyonu yazınız ve test ediniz.
+12 -> 2
+123 -> 3
+0 -> 1
+----------------------------------------------------------*/
+#include <iostream>
+#include <cmath>
+
+int calculatePower(int a = 1,int n = 1)
+{
+    int result = 1;
+    while(n--){
+        result *= a;
+    }
+    return result;
+}
+
+int main()
+{
+    int a,n;
+    std::cout << "iki sayi giriniz" << '\n';
+    std::cin >> a >> n;
+    std::cout << "result : " << calculatePower(a,n) <<'\n';
+    std::cout << "result : " << pow(a,n) << '\n';
+}
+/*---------------------------------------------------------
+Örnek Soru 4:Bir sayının her bir basamağının sayı değerleri
+sayının toplam basamak sayıncı kuvvetleri toplamı kendisine
+eşit olan sayılara Armstrong sayısı veya narsistik denir.
+Örneğin 371 sayısı bir narsistik sayıdır:
+371 = 3 ^ 3 + 7 ^ 3 + 1 ^ 3
+(Örnek 1,2 ve 3'ten faydalanınız.)
+Açıklama bir sayının Armstrong sayısı olup olmadığını geri
+döndüren isArmstrong isimli fonksiyonu yazınız ve test ediniz.
+----------------------------------------------------------*/
+/*---------------------------------------------------------
+Örnek Soru 2:Parametresiyle aldığı int türden bir sayının basamak
+sayısını geri döndüren getDigitsCount isimli fonksiyonu yazınız ve test ediniz.
+12 -> 2
+123 -> 3
+0 -> 1
+----------------------------------------------------------*/
+#include <iostream>
+#include <cmath>
+
+
+int getDigitsCount(int val)
+{
+    if(val == 0)
+        return 1;
+    int count = 0;
+    while(val){
+        count++;
+        val /= 10;
+    }
+    return count;
+}
+
+int calculatePower(int a = 1,int n = 1)
+{
+    int result = 1;
+    while(n--){
+        result *= a;
+    }
+    return result;
+}
+bool isArmstrong(int val)
+{
+    int temp = val,sum = 0;
+    while(val){
+        sum += calculatePower(val % 10, getDigitsCount(temp));
+        val /= 10;
+    }
+    return temp == sum;
+}
+
+int main()
+{
+    for(int i = 0;i < 100000;++i){
+        if(isArmstrong(i)){
+            std::cout << i << ' ';
+        }
+    }
+}
+//----------------------------------------------------------
+//Başka bir çözüm
+/*---------------------------------------------------------
+Örnek Soru 2:Parametresiyle aldığı int türden bir sayının basamak
+sayısını geri döndüren getDigitsCount isimli fonksiyonu yazınız ve test ediniz.
+12 -> 2
+123 -> 3
+0 -> 1
+----------------------------------------------------------*/
+#include <iostream>
+#include <cmath>
+
+
+int getDigitsCount(int val)
+{
+    if(val == 0)
+        return 1;
+    int count = 0;
+    while(val){
+        count++;
+        val /= 10;
+    }
+    return count;
+}
+
+int calculatePower(int a = 1,int n = 1)
+{
+    int result = 1;
+    while(n--){
+        result *= a;
+    }
+    return result;
+}
+bool isArmstrong(int val)
+{
+    int temp = val,sum = 0;
+    int count = getDigitsCount(val);
+    while(val){
+        sum += calculatePower(val % 10, count);
+        val /= 10;
+    }
+    return temp == sum;
+}
+
+int main()
+{
+    for(int i = 0;i < 100000;++i){
+        if(isArmstrong(i)){
+            std::cout << i << ' ';
+        }
+    }
+}
+//----------------------------------------------------------
+//Başka bir çözüm
+/*---------------------------------------------------------
+Örnek Soru 2:Parametresiyle aldığı int türden bir sayının basamak
+sayısını geri döndüren getDigitsCount isimli fonksiyonu yazınız ve test ediniz.
+12 -> 2
+123 -> 3
+0 -> 1
+----------------------------------------------------------*/
+#include <iostream>
+#include <cmath>
+
+
+int getDigitsCount(int val)
+{
+    if(val == 0)
+        return 1;
+    int count = 0;
+    while(val){
+        count++;
+        val /= 10;
+    }
+    return count;
+}
+
+int calculatePower(int a = 1,int n = 1)
+{
+    int result = 1;
+    while(n--){
+        result *= a;
+    }
+    return result;
+}
+bool isArmstrong(int val)
+{
+    int temp = val,sum = 0;
+    for(int count = getDigitsCount(temp);val;val /= 10){
+        sum += calculatePower(val % 10, count);
+    }
+    return temp == sum;
+}
+
+int main()
+{
+    for(int i = 0;i < 100000;++i){
+        if(isArmstrong(i)){
+            std::cout << i << ' ';
+        }
+    }
+}
+/*----------------------------------------------------------
+Örnek Soru isPrime algoritması
+-----------------------------------------------------------*/
+/*----------------------------------------------------------
+Örnek Soru isPrime algoritması yavaş versiyon
+-----------------------------------------------------------*/
+#include <iostream>
+
+
+bool isPrime(int val)
+{
+    if(val <= 1)
+        return false;
+    int half_val = val / 2;
+    for(int i = 2;i <= half_val;++i){
+        if(val % i == 0)
+            return false;
+    }
+    return true;
+}
+
+
+int main()
+{
+    for(int i = 0;i < 200;++i){
+        if(isPrime(i)){
+            std::cout << i << ' ';
+        }
+    }
+}
+/*-------------------------------------------------------
+Teorem: Eğer sayı karekökünden küçük olan tüm sayıları tam
+bölünemiyorsa asaldır.
+--------------------------------------------------------*/
+/*----------------------------------------------------------
+Örnek Soru isPrime algoritması
+ Teorem: Eğer sayı karekökünden küçük olan tüm sayıları tam
+bölünemiyorsa asaldır. (Hızlı versiyon)
+-----------------------------------------------------------*/
+#include <iostream>
+
+
+bool isPrime(int val)
+{
+    if(val <= 1)
+        return false;
+    if(val % 2 == 0)
+        return val == 2;
+    if(val % 3 == 0)
+        return val == 3;
+    if(val % 5 == 0)
+        return val == 5;
+    if(val % 7 == 0)
+        return val == 7;
+    for(int i = 11;i * i < val;i += 2){
+        if(val % i == 0)
+            return false;
+    }
+    return true;
+}
+
+
+int main()
+{
+    for(int i = 0;i < 100000;++i){
+        if(isPrime(i)){
+            std::cout << i << ' ';
+        }
+    }
+}
