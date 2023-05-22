@@ -1,0 +1,205 @@
+/*--------------------------------------------------------
+ifstream : dosyadan sadece okuma yapılabilir.
+ofstream : dosyaya sadece yazma yapılabilir.
+fstream : hem dosyaya yazma hem de dosyadan okuma yapılabilir.
+----------------------------------------------------------*/
+//--------------------------------------------------------
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    ifstream ifs{"Primes.txt",ios::in};
+
+    for(int i = 0;i < 10; ++i) {
+        int val;
+        ifs >> val;
+        cout << val << ' ';
+    }
+}
+//-----------------------------------------------
+#include <iostream>
+#include <map>
+#include <string>
+#include <fstream>
+#include <random>
+
+constexpr bool isPrime(const int val)
+{
+    if(val <= 1)
+        return false;
+    if(val % 2 == 0)
+        return val == 2;
+    if(val % 3 == 0)
+        return val == 3;
+    if(val % 5 == 0)
+        return val == 5;
+    if(val % 7 == 0)
+        return val == 7;
+    if(val % 11 == 0)
+        return val == 11;
+    for(int i = 13;i * i < val;i += 2){
+        if(val % i == 0)
+            return false;
+    }
+    return true;
+}
+
+
+int main()
+{
+    using namespace std;
+    const char*str = "ankara istanbul";
+    int idx = 0;
+    for(int i = 0;*(str + i) !=' ';++i) {
+        cout << *(str + i);
+        idx++;
+    }
+    idx++;
+    cout << '\n';
+    for(int i = idx;*(str + i) != '\0';++i){
+        cout << *(str + i);
+    }
+
+    ofstream ofs{"asal.txt",ios::out};
+    for(int i = 0;i < 200;++i)
+        if(isPrime(i))
+            ofs << i << '\n';
+}
+//----------------------------------------------------------
+#include <iostream>
+#include <string>
+#include <fstream>
+
+
+int main()
+{
+    using namespace std;
+    ifstream ifs{"asal.txt",ios::in};
+
+    for (string line; getline(ifs, line); ){
+        cout << line << ' ';
+    }
+}
+/*--------------------------------------------------------
+C++'taki Türler
+1-)Primitive(ilkel) türler
+2-)Sınıf türünden nesneler
+3-)User defined types:
+ a-)Structures
+ b-)enums
+ c-)union
+--------------------------------------------------------*/
+
+using namespace std;
+
+
+struct Colony{
+    int population;
+    char symbol;
+    int wins;
+    int loses;
+    void func()
+    {
+
+    }
+};
+
+class Person
+{
+
+
+};
+
+int main()
+{
+    Colony c1;
+    c1.population = 100;
+    Colony c2;
+    c2.population = 450;
+    Colony c3;
+    c3.symbol = '@';
+}
+/*----------------------------------------------
+ C++'ta nesne yaratım aşamaları:
+ 1-)Bellekte yer ayrılır.
+ 2-)Sınıfın non-static ve geri dönüş değeri
+ kavramı olmayan sınıfla aynı isme olan constructor
+ çağrılır.
+
+ Constructor nedir?
+ - non-static bir üye fonksiyondur.
+ - Eğer programcı herhangi bir ctor yazmazsa
+ default ctor derleyici tarafından yazılır.
+ -ctorlar overload(işlev yüklemesi) edilebilir.
+ - Eğer programcı herhangi bir ctor yazarsa bu durumda
+ deyleyici default ctoru yazmaz.
+ -----------------------------------------------*/
+#include <iostream>
+
+using namespace std;
+
+
+class Car{
+public:
+    Car()
+    {
+        cout << "I am a default ctor"<< '\n';
+    }
+    Car(int)
+    {
+        cout << "I am a int parameter ctor"<< '\n';
+    }
+    void start_engine()
+    {
+        cout << "Engine has started "<< '\n';
+    }
+    ~Car()
+    {
+        cout << "I am a destructor" << '\n';
+    }
+};
+
+int main()
+{
+    Car GokhansCar;
+    GokhansCar.start_engine();
+    Car bmw(10);
+    bmw.start_engine();
+}
+//-------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+class Date{
+public:
+    Date()
+    {
+        day = 1;
+        month = 1;
+        year = 1;
+    }
+    Date(int day,int month,int year)
+    {
+        this->day = day;
+        this->month = month;
+        this->year = year;
+    }
+    void printDate()
+    {
+        cout << day << '.' << month << '.' << year << '\n';
+    }
+private:
+    int day,month,year;
+};
+
+int main()
+{
+    Date birthday(12,3,1998);
+    birthday.printDate();
+    Date d;
+    d.printDate();
+}

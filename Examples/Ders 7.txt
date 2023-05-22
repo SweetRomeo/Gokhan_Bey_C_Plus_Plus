@@ -1,0 +1,150 @@
+//--------------------------------------------------------
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#define randomize() srand(time(nullptr))
+
+using namespace std;
+
+template<typename Iter>
+void print(Iter beg,Iter end)
+{
+    while(beg != end){
+        cout << *beg++ << ' ';
+    }
+    cout << '\n';
+}
+
+
+
+int main()
+{
+    vector<int> ivec{12,34,56,78};
+
+
+    for(int i = 0;i < 10;++i) {
+        cout << "vectorun uzunlugu : " << ivec.size() << '\n';
+        cout << "vectorun capacity : " << ivec.capacity() << '\n';
+        ivec.push_back(rand() % 100);
+        print(ivec.begin(),ivec.end());
+        getchar();
+    }
+    exit(EXIT_SUCCESS);//return 0;
+}
+//--------------------------------------------------------
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#define randomize() srand(time(nullptr))
+
+using namespace std;
+
+template<typename Iter>
+void print(Iter beg,Iter end)
+{
+    while(beg != end){
+        cout << *beg++ << ' ';
+    }
+    cout << '\n';
+}
+
+
+
+int main()
+{
+    vector<int> ivec{12,34,56,78};
+    int arr[]{12,90,56,78,14};
+
+    for(auto x : arr)
+        cout << x << ' ';
+    cout  <<"\n******************\n";
+    for(auto x : ivec)
+        cout << x << ' ';
+
+
+    exit(EXIT_SUCCESS);//return 0;
+}
+//--------------------------------------------------------
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#define randomize() srand(time(nullptr))
+
+using namespace std;
+
+template<typename Iter>
+void print(Iter beg,Iter end)
+{
+    while(beg != end){
+        cout << *beg++ << ' ';
+}
+cout << '\n';
+}
+
+
+
+
+int main()
+{
+    vector<pair<string,int>> Persons{{"berke",12},{"murat",34},{"Mehmet",56},{"Gokhan",78}};
+    int arr[]{12,90,56,78,14};
+
+    for(auto x : arr)
+        cout << x << ' ';
+    cout  <<"\n******************\n";
+    for(auto [name,ID]: Persons){
+        cout << "name : " << name << " ID : " << ID << '\n';
+    }
+    Persons.push_back(make_pair("Mustafa",1629));
+    cout << "\n***********************\n" ;
+
+    for(auto [name,ID]: Persons){
+        cout << "name : " << name << " ID : " << ID << '\n';
+    }
+
+    exit(EXIT_SUCCESS);//return 0;
+}
+//--------------------------------------------------------
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+
+constexpr bool isPrime(const int val)
+{
+    if(val <= 1)
+        return false;
+    if(val % 2 == 0)
+        return val == 2;
+    if(val % 3 == 0)
+        return val == 3;
+    if(val % 5 == 0)
+        return val == 5;
+    if(val % 7 == 0)
+        return val == 7;
+    if(val % 11 == 0)
+        return val == 11;
+    for(int i = 13;i * i < val;i += 2){
+        if(val % i == 0)
+            return false;
+    }
+    return true;
+}
+
+
+
+int main()
+{
+    ofstream ofs{"Primes.txt",ios::out};
+
+    for(int i = -10 ;i < 100 ;++i)
+        if(isPrime(i))
+        ofs << i << ' ';
+}
