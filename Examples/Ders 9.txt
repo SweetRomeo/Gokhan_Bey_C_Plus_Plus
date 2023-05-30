@@ -1,0 +1,133 @@
+//--------------------------------------------------------
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+double doSomethingElse(int y)//int y = 12;
+{
+    y++;//y = 13
+    cout <<"In doSomethingElse: y="<< y <<endl; // y = 13
+    return (y / 2.0 - 3);
+}
+int doSomething(int & x, int y)
+{
+    double k;
+    x *= 3; //x = x * 3; => 12
+    y = x * pow(2, y/4);//y = 48
+    k = doSomethingElse(x);//k = 3.5
+    cout << "In doSomething: x=" << x //12
+         << " y="<<y<<" and k=" << k << endl;//y = 48, k = 3.5
+    return k;
+}
+int main()
+{
+    int x = 4, y = 7;
+    int z = doSomething(x, y+1);// z = 3
+    cout << "In main: After: x=" << x //12
+         << " y=" <<y<<" and z=" << z << endl;//y = 7 , z = 3
+    return 0;
+}
+//--------------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+void triangle(char ch)
+{
+    int lines = ch - 'a';
+    int char_count = 0;
+    char top_char = 'a';
+    for(int i = 0;i <= lines;++i) {
+        char_count = 2 * i + 1;
+        for (int j = 0;j < char_count;++j) {
+            cout << top_char;
+        }
+        cout << '\n';
+        top_char++;
+    }
+}
+
+int main()
+{
+    char ch;
+    cout << "Enter a character?\n";
+    cin >> ch;
+    triangle(ch);
+    return 0;
+}
+//--------------------------------------------------------
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int begin_end_check(const string& source,const string& sub)
+{
+    auto begin = source.find(sub);
+    auto end = source.rfind(sub);
+    if(begin == string::npos)
+        return 1;
+    if(begin != 0 && end != source.length() - sub.length())
+        return 2;
+    return 3;
+}
+
+
+int main()
+{
+    string s1;
+    string s2;
+    cout << "Enter two strings"<< '\n';
+    cin >> s1;
+    cin >> s2;
+    auto x = begin_end_check(s1,s2);
+    cout << "x : "<< x<< '\n';
+    return 0;
+}
+//--------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int val;
+    cout << "Enter val" << '\n';
+    cin >> val;
+    if(val <= 0){
+        cout << "Invalid input!" << '\n';
+        return 1;
+    }
+    cout << "The factors of " << val << " are : ";
+    for(int i = 1;i <= val;++i){
+        if(val % i == 0){
+            if(val == i)
+                cout << i;
+            else
+                cout << i << ", ";
+        }
+    }
+
+    return 0;
+}
+//--------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+string func(const string& mystr,int myint)
+{
+    return mystr.substr(mystr.length() - myint) + mystr.substr(0,mystr.length() - myint);
+}
+
+int main() {
+    string input;
+    int n;
+    cout << "Enter a text?"<< '\n';
+    getline(cin,input);
+    cout << "Enter n?" << '\n';
+    cin >> n;
+    auto s2 = func(input,n);
+    cout << s2 << '\n';
+    return 0;
+}
